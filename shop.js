@@ -163,7 +163,6 @@ function setupPurchaseModal() {
             });
     });
 }
-
 // Global check to see if the script loaded
 console.log("Common Ground Script Loaded");
 setupPurchaseModal();
