@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop | Common Ground</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Specific styles for the product grid */
+        #products-main { padding: 30px 5%; align-items: center;}
+        #products-container {
+            display: flex; flex-wrap: wrap; gap: 30px;
+            justify-content: center; width: 100%;
+        }
+        .product-card {
+            background-color: rgba(40, 42, 50, 0.6);
+            width: clamp(280px, 45%, 350px); /* 2 per row on mobile, stable size */
+            border-radius: 1.5rem;
+            text-align: center; padding: 20px;
+            transition: 0.3s;
+        }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(189, 212, 231, 0.3);}
+        .product-card img { width: 100%; max-height: 250px; object-fit: contain; border-radius: 1rem;}
+        
+        /* Styles for the Size buttons within the modal */
+        .size-options { display: flex; gap: 10px; justify-content: center; margin: 15px 0;}
+        .size-option { background: transparent; border: 1px solid #bdd4e7; color: #bdd4e7; border-radius: 5px;}
+        .size-option.active { background-color: #bdd4e7; color: #000;}
+    </style>
+</head>
+<body>
+
+    <nav>
+        <img src="Common-Ground-Logo.png" alt="Common Ground Logo" class="nav-logo">
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+        </div>
+    </nav>
+
+    <main id="products-main">
+        <h1 style="text-align: center; margin-bottom: 30px;">CG Mock Neck Collection</h1>
+        
+        <div id="products-container">
+            <div class="product-card">
+                <img src="New-navy.png" alt="Navy Mock Neck T-shirt">
+                <h3>CG Mock Neck - Navy</h3>
+                <p>500 EGP</p>
+                <button class="buy-btn" data-name="Navy Mock Neck" data-price="500">Add to Cart</button>
+            </div>
+
+            <div class="product-card">
+                <img src="New-white.png" alt="White Mock Neck T-shirt">
+                <h3>CG Mock Neck - White</h3>
+                <p>500 EGP</p>
+                <button class="buy-btn" data-name="White Mock Neck" data-price="500">Add to Cart</button>
+            </div>
+
+            <div class="product-card">
+                <img src="New-black.png" alt="Black Mock Neck T-shirt">
+                <h3>CG Mock Neck - Black</h3>
+                <p>500 EGP</p>
+                <button class="buy-btn" data-name="Black Mock Neck" data-price="500">Add to Cart</button>
+            </div>
+            
+            </div>
+    </main>
+
+    <div id="product-modal" class="modal-overlay">
+        <div class="modal-card">
+            <span class="close-modal">&times;</span>
+            <h2 id="modal-product-name">Product Name</h2>
+            <img id="modal-img" src="" alt="Selected Product" style="height: 100px; object-fit: contain;">
+            
+            <div class="size-section">
+                <p>Select Size:</p>
+                <div class="size-options">
+                    <button class="size-option" data-size="S">S</button>
+                    <button class="size-option" data-size="M">M</button>
+                    <button class="size-option" data-size="L">L</button>
+                    <button class="size-option" data-size="XL">XL</button>
+                    <button class="size-option" id="custom-trigger" data-size="Custom">Custom</button>
+                </div>
+            </div>
+
+            <div id="custom-size-fields" style="display: none; margin-top: 15px;">
+                <p>Enter measurements (cm):</p>
+                <div class="custom-inputs">
+                    <input type="number" id="chest" placeholder="Chest">
+                    <input type="number" id="length" placeholder="Length">
+                    <input type="number" id="shoulder" placeholder="Shoulder">
+                </div>
+                <img src="tshirt-diagram.png" alt="Measurement Guide" style="width:100%; margin-top:10px; border-radius:8px;">
+            </div>
+
+            <div class="qty-section" style="margin: 20px 0;">
+                <button id="minus">-</button>
+                <input type="number" id="qty" value="1" min="1" readonly style="width: 50px; text-align: center; border:none; background:transparent; color:#bdd4e7;">
+                <button id="plus">+</button>
+            </div>
+
+            <button id="add-to-cart-confirm" style="width: 100%;">CONTINUE TO CHECKOUT</button>
+        </div>
+    </div>
+
+    <script src="shop.js"></script>
+</body>
+</html>

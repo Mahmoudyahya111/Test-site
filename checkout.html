@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | Common Ground</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #checkout-main { display: flex; justify-content: center; padding: 50px 20px;}
+        .checkout-box {
+            background-color: rgba(26, 26, 26, 0.9);
+            width: clamp(300px, 90%, 600px);
+            padding: 2.5rem;
+            border-radius: 2rem;
+            border: 1px solid #bdd4e7;
+            text-align: center;
+        }
+        input, select {
+            width: 100%; padding: 12px; margin-top: 10px;
+            background: #222; border: 1px solid #bdd4e7; color: #fff;
+            border-radius: 8px;
+        }
+        #order-summary-box {
+            background-color: rgba(189, 212, 231, 0.1);
+            padding: 15px; border-radius: 10px; margin-bottom: 25px;
+            text-align: left; font-size: 1.1rem;
+        }
+        /* Hidden until InstaPay is selected */
+        #instapay-details {
+            border: 1px dashed #bdd4e7; padding: 15px; margin-top: 15px;
+            display: none; background-color: rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <img src="uploaded:Common-Ground-Logo.png" alt="Common Ground Logo" class="nav-logo">
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+        </div>
+    </nav>
+
+    <main id="checkout-main">
+        <div class="checkout-box">
+            <h2>Order Finalization</h2>
+            <p>Review your order and select a payment method. Your invoice will be sent to the email provided.</p>
+            
+            <div id="order-summary-box">
+                <p>Loading your selection...</p>
+            </div>
+
+            <form id="checkout-form">
+                
+                <input type="text" id="cust-name" placeholder="Invoice Name (Full Name)" required>
+                <input type="email" id="cust-email" placeholder="mahmoudyahya66@gmail.com (for Invoice)" required>
+                <input type="tel" id="cust-phone" placeholder="Contact Number (010x...)" required>
+                <input type="text" id="cust-address" placeholder="Shipping Address" required>
+
+                <label style="display: block; margin-top: 20px;">Payment Method:</label>
+                <select id="payment-method" required>
+                    <option value="cod">Cash on Delivery</option>
+                    <option value="instapay">InstaPay</option>
+                </select>
+
+                <div id="instapay-details">
+                    <p>Transfer to InstaPay ID: <strong>mahmoud_cg</strong></p>
+                    <label>Upload Transfer Screenshot:</label>
+                    <input type="file" id="instapay-img" accept="image/*">
+                </div>
+
+                <button type="submit" id="complete-btn" style="width: 100%; margin-top: 25px;">Place Order</button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        // 1. LOAD ORDER SUMMARY
+        // Retrieve the data stored in the shop.js phase
+        const currentOrder = JSON.parse(localStorage.getItem('cgCurrentOrder'));
+        if(currentOrder) {
+            document.getElementById('order-summary-box').innerHTML = `
+                <strong>Items:</strong> ${currentOrder.quantity}x ${currentOrder.item}<br>
+                <strong>Size:</strong> ${currentOrder.size}<br>
+                ${currentOrder.size === 'Custom' ? '<em>*Custom measurements stored</em>' : ''}
+            `;
+        }
+
+        // 2. INSTAPAY TOGGLE
+        // Shows the upload box only if InstaPay is chosen from the drop-down
+        const paymentSelect = document.getElementById('payment-method');
+        const instapayBox = document.getElementById('instapay-details');
+        paymentSelect.addEventListener('change', () => {
+            instapayBox.style.display = (paymentSelect.value === 'instapay') ? 'block' : 'none';
+        });
+
+        // 3. COMPLETE ORDER LOGIC
+        document.getElementById('checkout-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('complete-btn');
+            btn.innerText = "Processing...";
+            btn.disabled = true;
+
+            // In a real setup, this data would be sent via fetch() to a backend server.
+            // A server (like node.js or Google Apps Script) would handle emailing the invoice.
+            
+            // This is a placeholder notification
+            alert(`Thank you, ${document.getElementById('cust-name').value}!\nOrder CG-${Date.now().toString().slice(-4)} placed successfully.\nAn invoice has been sent to ${document.getElementById('cust-email').value}`);
+            
+            // Clear order from memory and return to home page
+            localStorage.removeItem('cgCurrentOrder');
+            window.location.href = "index.html";
+        });
+    </script>
+</body>
+</html>

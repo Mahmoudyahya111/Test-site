@@ -1,0 +1,155 @@
+/* =========================================
+   1. GLOBAL RESET & BASE STYLES
+   ========================================= */
+* {
+    box-sizing: border-box; /* Crucial for iOS to prevent white side-gaps */
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    /* Stops the "bounce" scroll effect that creates white gaps on mobile */
+    overflow-x: hidden; 
+    -webkit-font-smoothing: antialiased; /* Sharpens fonts on iOS */
+}
+
+/* =========================================
+   2. MOBILE FLAWLESS SCROLLING BACKGROUND
+   ========================================= */
+body::before {
+    content: "";
+    /* position: fixed anchors it, stopping address-bar glitches */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* The requested background picture */
+    background-image: url('textile_image.avif');
+    /* Ensures image covers the full screen always */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* Keeps it behind all content */
+    z-index: -1; 
+    /* Boosts performance for mobile scrolling */
+    will-change: transform; 
+}
+
+body {
+    background-color: #000000; /* Fallback color */
+    font-family: "Saira Stencil", sans-serif;
+    /* Main color scheme light blue */
+    color: #bdd4e7;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================================
+   3. NAVIGATION BAR
+   ========================================= */
+nav {
+    display: flex;
+    width: 100%;
+    /* Transparent black for premium feel */
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: space-between; /* Pushes logo left, links right */
+    align-items: center; /* Vertically centers everything */
+    padding: 1.5rem 5%;
+    border-bottom: 1px solid rgba(189, 212, 231, 0.2);
+}
+
+.nav-logo {
+    height: clamp(30px, 4vh, 60px); /* Responsive logo size */
+    width: auto;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: #bdd4e7;
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 2px;
+    transition: 0.25s;
+    /* Fluid font size for mobile/desktop */
+    font-size: clamp(0.9rem, 1.5vw, 1.5rem);
+}
+
+/* =========================================
+   4. GENERAL BUTTONS (Color Scheme)
+   ========================================= */
+button, .button {
+    background-color: #57585c;
+    border-radius: 1rem;
+    color: #BDD4E7;
+    padding: 10px 25px;
+    letter-spacing: 2px;
+    border: 1px solid #bdd4e7;
+    transition: 0.25s;
+    cursor: pointer;
+    font-family: "Saira Stencil", sans-serif;
+    text-decoration: none;
+    display: inline-block;
+}
+
+button:hover, .button:hover {
+    background-color: #BDD4E7;
+    color: #000;
+    box-shadow: 0 0.5em 1em #BDD4E7;
+}
+
+/* =========================================
+   5. MODAL OVERLAY (Pop-up Styling)
+   ========================================= */
+.modal-overlay {
+    display: none; /* Hidden until button click */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Dark background to focus on the modal */
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px); /* Premium blurry background */
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-card {
+    background: #1a1a1a;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    border: 1px solid #bdd4e7;
+    width: 90%;
+    max-width: 450px;
+    text-align: center;
+    position: relative;
+    color: #bdd4e7;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #BDD4E7;
+}
+
+/* Custom Measurement Inputs */
+.custom-inputs input {
+    width: 80px;
+    background: #333;
+    border: 1px solid #bdd4e7;
+    color: white;
+    margin: 5px;
+    padding: 8px;
+    text-align: center;
+}

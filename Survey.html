@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome | Common Ground</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Special styles for the landing page */
+        #survey-main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 50px 20px;
+        }
+        #clothing-form {
+            background-color: rgba(26, 26, 26, 0.9);
+            width: clamp(300px, 90%, 600px);
+            padding: 2rem;
+            border-radius: 2rem;
+            border: 1px solid #bdd4e7;
+            text-align: center;
+        }
+        form label { font-size: 1.2rem; display: block; margin-top: 15px; }
+        form input, form textarea {
+            width: 100%; padding: 12px; margin-top: 8px;
+            background: #222; border: 1px solid #bdd4e7; color: #fff;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <img src="Common-Ground-Logo.png" alt="Common Ground Logo" class="nav-logo">
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+        </div>
+    </nav>
+
+    <div style="background-color: rgba(189, 212, 231, 0.2); padding: 10px; text-align: center;">
+        <p><strong>Note:</strong> While this survey is public, you will be required to sign in with your email to finalize a purchase for your invoice.</p>
+    </div>
+
+    <main id="survey-main">
+        <form id="clothing-form" action="shop.html">
+            <h2>Common Ground Style Preference</h2>
+            <p>Help us personalize your experience before you shop.</p>
+            
+            <label for="fullname">Full Name:</label>
+            <input type="text" id="fullname" placeholder="Mahmoud Yahya" required>
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" placeholder="mahmoudyahya66@gmail.com" required>
+
+            <label for="feedback">Describe your clothing style:</label>
+            <textarea id="feedback" rows="4" placeholder="Basic, classic, oversized, etc."></textarea>
+
+            <div style="margin-top: 25px; display: flex; gap: 15px; justify-content: center;">
+                <button type="submit">Submit Feedback</button>
+                <a href="shop.html" class="button">Skip to Shop</a>
+            </div>
+        </form>
+    </main>
+
+</body>
+</html>
